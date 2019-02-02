@@ -42,7 +42,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+In case you are new to Twitter you will need to indeed follow some pages of interest in order to have some feed to show in the app.
 
 ## Open-source libraries used
 
