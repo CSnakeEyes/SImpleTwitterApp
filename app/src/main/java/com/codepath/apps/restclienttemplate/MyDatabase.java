@@ -3,13 +3,13 @@ package com.codepath.apps.restclienttemplate;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
-import com.codepath.apps.restclienttemplate.models.SampleModel;
-import com.codepath.apps.restclienttemplate.models.SampleModelDao;
+import com.codepath.apps.restclienttemplate.models.TweetModel;
+import com.codepath.apps.restclienttemplate.models.TweetModelDao;
 
-@Database(entities={SampleModel.class}, version=1)
+@Database(entities={TweetModel.class}, version=1)
 public abstract class MyDatabase extends RoomDatabase {
-    public abstract SampleModelDao sampleModelDao();
+    public abstract TweetModelDao tweetModelDao();
 
     // Database name to be used
-    public static final String NAME = "MyDataBase";
+    public static final String NAME = "tweetDb";
 }

@@ -84,6 +84,7 @@ public class TimelineActivity extends AppCompatActivity {
 //            Toast.makeText(this, "Compose!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ComposeActivity.class);
             this.startActivityForResult(intent, REQUEST_CODE);
+//            this.startActivity(intent);
             return true;
         }
 
@@ -113,7 +114,7 @@ public class TimelineActivity extends AppCompatActivity {
                         JSONObject jsonTweetObject = response.getJSONObject(i);
 
                         // Convert each JSONObject into a Tweet object
-                        Tweet tweet = (Tweet) Tweet.fromJson(jsonTweetObject);
+                        Tweet tweet = Tweet.fromJson(jsonTweetObject);
 
                         tweetsToAdd.add(tweet);
 
