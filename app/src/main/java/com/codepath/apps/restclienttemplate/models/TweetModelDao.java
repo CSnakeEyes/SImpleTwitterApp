@@ -9,11 +9,11 @@ import java.util.List;
 
 @Dao
 public interface TweetModelDao {
-    @Query("SELECT * FROM tweetModel")
+    @Query("SELECT * FROM TweetModel")
     List<TweetModel> getAll();
 
-    @Query("SELECT * FROM TweetModel ORDER BY ID DESC LIMIT 25")
-    List<SampleModel> recentItems();
+    @Query("SELECT * FROM TweetModel ORDER BY uid DESC LIMIT 25")
+    List<TweetModel> recentItems();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertModel(TweetModel... tweetModels);

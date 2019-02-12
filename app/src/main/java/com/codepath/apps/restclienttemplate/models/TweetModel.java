@@ -1,12 +1,14 @@
 package com.codepath.apps.restclienttemplate.models;
 
 import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+@Entity
 public class TweetModel {
 
     public TweetModel() {
