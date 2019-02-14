@@ -19,7 +19,7 @@
         android:layout_marginStart="-104dp"
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_toEndOf="@+id/name_tv"
+        android:layout_toEndOf="@+id/tweet_tv"
         tools:text="ScreenName" />
 
     <TextView
@@ -35,7 +35,7 @@
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/name_tv"
+        android:id="@+id/tweet_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"

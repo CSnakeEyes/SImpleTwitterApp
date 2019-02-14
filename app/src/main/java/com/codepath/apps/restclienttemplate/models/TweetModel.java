@@ -1,9 +1,9 @@
 package com.codepath.apps.restclienttemplate.models;
 
 import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,11 +25,9 @@ public class TweetModel {
     }
 
     @PrimaryKey
-    @NonNull
-    @ColumnInfo(name = "uid")
+    @ColumnInfo(name = "uuid")
     private long uid;
 
-    @NonNull
     public long getUid() {
         return uid;
     }
@@ -38,11 +36,9 @@ public class TweetModel {
         this.uid = uid;
     }
 
-    @NonNull
     @ColumnInfo(name = "createdAt")
     private String createdAt;
 
-    @NonNull
     public String getCreatedAt(){
         return createdAt;
     }
@@ -51,11 +47,9 @@ public class TweetModel {
         this.createdAt = createdAt;
     }
 
-    @NonNull
     @ColumnInfo(name = "body")
     private String body;
 
-    @NonNull
     public String getBody() {
         return body;
     }
@@ -64,17 +58,25 @@ public class TweetModel {
         this.body = body;
     }
 
-    @NonNull
-    @ColumnInfo(name = "user")
-    private User user;
+    @Embedded User user;
 
-    @NonNull
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @ColumnInfo
+    private String keyName;
+
+    public String getKeyName() {
+        return keyName;
+    }
+
+    public void setKeyName(String keyName) {
+        this.keyName = keyName;
     }
 
 }

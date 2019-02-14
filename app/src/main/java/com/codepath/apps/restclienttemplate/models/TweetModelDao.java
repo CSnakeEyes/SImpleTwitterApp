@@ -17,4 +17,7 @@ public interface TweetModelDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertModel(TweetModel... tweetModels);
+
+    @Query("SELECT * FROM TweetModel WHERE uid = :id")
+    TweetModel byId(long id);
 }

@@ -82,9 +82,9 @@ public class TimelineActivity extends AppCompatActivity {
         if(item.getItemId() == R.id.compose_menu) {
             // If 'Compose' icon selected then...
 //            Toast.makeText(this, "Compose!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, ComposeActivity.class);
-            this.startActivityForResult(intent, REQUEST_CODE);
-//            this.startActivity(intent);
+            Intent intent = new Intent(this, ComposeFragment.class);
+//            this.startActivityForResult(intent, REQUEST_CODE);
+            this.startActivity(intent);
             return true;
         }
 

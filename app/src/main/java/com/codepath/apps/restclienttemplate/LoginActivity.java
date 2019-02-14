@@ -6,20 +6,20 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
-import com.codepath.apps.restclienttemplate.models.SampleModel;
-import com.codepath.apps.restclienttemplate.models.SampleModelDao;
+import com.codepath.apps.restclienttemplate.models.TweetModel;
+import com.codepath.apps.restclienttemplate.models.TweetModelDao;
 import com.codepath.oauth.OAuthLoginActionBarActivity;
 
 public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 
-	SampleModelDao sampleModelDao;
+	TweetModelDao tweetModelDao;
 
-	AsyncTask<SampleModel, Void, Void> task = new AsyncTask<SampleModel, Void, Void>() {
+	AsyncTask<TweetModel, Void, Void> task =  new AsyncTask<TweetModel, Void, Void>() {
 		@Override
-		protected Void doInBackground(SampleModel... sampleModels) {
-			sampleModelDao.insertModel(sampleModels);
+		protected Void doInBackground(TweetModel... tweetModels) {
+			tweetModelDao.insertModel(tweetModels);
 			return null;
-		};
+		}
 	};
 
 	@Override
@@ -27,12 +27,12 @@ public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
-		final SampleModel sampleModel = new SampleModel();
-		sampleModel.setName("CodePath");
+		final TweetModel tweetModel = new TweetModel();
+		tweetModel.setKeyName("CodePath");
 
-		sampleModelDao = ((TwitterApp) getApplicationContext()).getMyDatabase().sampleModelDao();
+		tweetModelDao = ((TwitterApp) getApplicationContext()).getMyDatabase().tweetModelDao();
 
-		task.execute(sampleModel);
+		task.execute(tweetModel);
 	}
 
 

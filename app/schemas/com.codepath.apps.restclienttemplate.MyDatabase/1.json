@@ -2,15 +2,15 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "38bf0e7eee2887a835340cdb59726b8b",
+    "identityHash": "a1fe05a1bdb833e2c85b50ad8adc1072",
     "entities": [
       {
         "tableName": "TweetModel",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER NOT NULL, `createdAt` TEXT NOT NULL, `body` TEXT NOT NULL, `user` TEXT NOT NULL, PRIMARY KEY(`uid`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uuid` INTEGER NOT NULL, `createdAt` TEXT NOT NULL, `body` TEXT NOT NULL, `keyName` TEXT NOT NULL, `name` TEXT, `uid` INTEGER NOT NULL, `screenName` TEXT, `profileImageUrl` TEXT, PRIMARY KEY(`uuid`))",
         "fields": [
           {
             "fieldPath": "uid",
-            "columnName": "uid",
+            "columnName": "uuid",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -27,15 +27,39 @@
             "notNull": true
           },
           {
-            "fieldPath": "user",
-            "columnName": "user",
+            "fieldPath": "keyName",
+            "columnName": "keyName",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "user.name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "user.screenName",
+            "columnName": "screenName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.profileImageUrl",
+            "columnName": "profileImageUrl",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "uid"
+            "uuid"
           ],
           "autoGenerate": false
         },
@@ -45,7 +69,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"38bf0e7eee2887a835340cdb59726b8b\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a1fe05a1bdb833e2c85b50ad8adc1072\")"
     ]
   }
 }
