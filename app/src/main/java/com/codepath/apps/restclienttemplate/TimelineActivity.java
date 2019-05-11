@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.models.TweetModel;
+import com.codepath.apps.restclienttemplate.models.TweetModelDao;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -32,8 +35,18 @@ public class TimelineActivity extends AppCompatActivity {
     private RecyclerView rvTweets;
     private TweetsAdapter adapter;
     private List<Tweet> tweets;
+    private TweetModelDao tweetModelDao;
 
     private SwipeRefreshLayout swipeContainer;
+//    tweetModelDao = ((TwitterApp) getApplicationContext()).getMyDatabase().tweetModelDao();
+
+    private AsyncTask<TweetModel, Void, Void> task =  new AsyncTask<TweetModel, Void, Void>() {
+        @Override
+        protected Void doInBackground(TweetModel... tweetModel) {
+            tweetModelDao.insertModel(tweetModel);
+            return null;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +54,9 @@ public class TimelineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timeline);
 
         client = TwitterApp.getRestClient(this);
+
+        // Get the DAO
+        tweetModelDao = ((TwitterApp) getApplicationContext()).getMyDatabase().tweetModelDao();
 
         swipeContainer = findViewById(R.id.swipeContainer);
         // Configure the refreshing colors
@@ -117,6 +133,17 @@ public class TimelineActivity extends AppCompatActivity {
                         Tweet tweet = Tweet.fromJson(jsonTweetObject);
 
                         tweetsToAdd.add(tweet);
+
+                        // Add tweet to local database
+                        final TweetModel tweetModel = TweetModel.fromJson(jsonTweetObject);
+                        task.execute(tweetModel);
+//                        ((TwitterApp) getApplicationContext()).getMyDatabase().runInTransaction(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                tweetModelDao.insertModel(tweetModel);
+//                            }
+//                        });
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();

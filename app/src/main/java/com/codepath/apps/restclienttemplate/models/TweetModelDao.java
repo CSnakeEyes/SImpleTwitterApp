@@ -8,7 +8,7 @@ import android.arch.persistence.room.Query;
 import java.util.List;
 
 @Dao
-public interface TweetModelDao {
+public interface  TweetModelDao {
     @Query("SELECT * FROM TweetModel")
     List<TweetModel> getAll();
 
